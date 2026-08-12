@@ -17,6 +17,7 @@ class Quiz:
             return
 
         quiz_questions = self.questions.copy()
+
         random.shuffle(quiz_questions)
 
         self.score = 0
@@ -32,10 +33,7 @@ class Quiz:
 
         total_questions = len(quiz_questions)
 
-        for number, question in enumerate(
-            quiz_questions,
-            start=1
-        ):
+        for number, question in enumerate(quiz_questions, start=1):
 
             progress = (number / total_questions) * 100
 
@@ -95,7 +93,6 @@ class Quiz:
 
         print(f"Candidate  : {self.name}")
         print(f"Topic      : {self.topic}")
-
         print(
             f"Score      : "
             f"{self.score}/{total_questions}"
@@ -133,37 +130,12 @@ class Quiz:
 
         print("\nResult saved successfully! 💾")
 
-        while True:
+        input(
+            "\nPress Enter to return to "
+            "the main menu..."
+        )
 
-            print("\nWhat would you like to do?")
-            print("1. Try Again")
-            print("2. Main Menu")
-
-            choice = input(
-                "Enter your choice: "
-            ).strip()
-
-            if choice == "1":
-
-                self.start_quiz()
-                break
-
-            elif choice == "2":
-
-                break
-
-            else:
-
-                print(
-                    "\nInvalid choice. "
-                    "Please select 1 or 2."
-                )
-
-    def save_result(
-        self,
-        total_questions,
-        percentage
-    ):
+    def save_result(self, total_questions, percentage):
 
         current_time = datetime.now()
 
