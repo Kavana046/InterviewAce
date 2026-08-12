@@ -2,236 +2,129 @@ from quiz import Quiz
 from questions import python_questions, git_questions, linux_questions
 
 
-def welcome():
-
+def show_welcome():
     print("\n")
-    print("==============================================")
-    print("              INTERVIEW ACE")
-    print("       Python Interview Preparation")
-    print("==============================================")
+    print("==================================================")
+    print("              🎯 WELCOME TO INTERVIEWACE")
+    print("==================================================")
+    print("       Python Interview Preparation System")
+    print("==================================================")
     print()
-    print("Prepare. Practice. Perform.")
-    print()
-    print("Technical Domains:")
-    print("  • Python")
-    print("  • Git")
-    print("  • Linux")
-    print()
-    print("==============================================")
 
 
-def show_menu(name):
-
-    print("\n")
-    print("==============================================")
-    print(f"          Welcome, {name}!")
-    print("==============================================")
+def show_menu():
+    print("\n---------------- MAIN MENU ----------------")
     print("1. Python Interview")
     print("2. Git Interview")
     print("3. Linux Interview")
-    print("4. View My Progress")
+    print("4. View Previous Results")
     print("5. Exit")
-    print("==============================================")
+    print("-------------------------------------------")
 
 
 def select_difficulty(questions, topic, name):
 
-    print("\n========== SELECT DIFFICULTY ==========")
-    print("1. Easy")
-    print("2. Medium")
-    print("3. Hard")
-    print("4. Back")
-    print("=======================================")
+    while True:
 
-    choice = input("\nEnter your choice: ")
+        print("\n----------- SELECT DIFFICULTY -----------")
+        print("1. Easy")
+        print("2. Medium")
+        print("3. Hard")
+        print("4. Back to Main Menu")
+        print("-----------------------------------------")
 
-    if choice == "1":
-        difficulty = "Easy"
+        difficulty_choice = input(
+            "Enter your choice: "
+        ).strip()
 
-    elif choice == "2":
-        difficulty = "Medium"
+        if difficulty_choice == "4":
+            return
 
-    elif choice == "3":
-        difficulty = "Hard"
+        if difficulty_choice == "1":
+            difficulty = "Easy"
 
-    elif choice == "4":
+        elif difficulty_choice == "2":
+            difficulty = "Medium"
+
+        elif difficulty_choice == "3":
+            difficulty = "Hard"
+
+        else:
+            print("\nInvalid difficulty choice.")
+            continue
+
+        selected_questions = [
+            question
+            for question in questions
+            if question["difficulty"] == difficulty
+        ]
+
+        if not selected_questions:
+            print(
+                f"\nNo {difficulty} questions available."
+            )
+            continue
+
+        quiz = Quiz(
+            selected_questions,
+            topic,
+            name
+        )
+
+        quiz.start_quiz()
+
         return
 
-    else:
-        print("\nInvalid difficulty choice.")
-        return
 
-    selected_questions = [
-        question
-        for question in questions
-        if question["difficulty"] == difficulty
-    ]
+def view_results():
 
-    if not selected_questions:
-        print("\nNo questions available.")
-        return
-
-    quiz = Quiz(
-        selected_questions,
-        f"{topic} - {difficulty}",
-        name
-    )
-
-    quiz.start_quiz()
-
-
-def get_user_results(name):
+    print("\n")
+    print("==================================================")
+    print("                 📊 PREVIOUS RESULTS")
+    print("==================================================")
 
     try:
 
         with open("results.txt", "r") as file:
-            results = file.readlines()
+            results = file.read()
+
+        if results.strip():
+
+            print(results)
+
+        else:
+
+            print("\nNo results available yet.")
 
     except FileNotFoundError:
 
-        return []
+        print("\nNo results available yet.")
 
-    user_results = []
+    print("==================================================")
 
-    for result in results:
-
-        if f"Candidate: {name}" in result:
-
-            user_results.append(result.strip())
-
-    return user_results
-
-
-def show_progress(name):
-
-    print("\n")
-    print("==============================================")
-    print("               MY PROGRESS")
-    print("==============================================")
-
-    user_results = get_user_results(name)
-
-    if not user_results:
-
-        print(f"\nNo results found for {name}.")
-        print("Complete a quiz to start tracking progress!")
-        print("==============================================")
-        return
-
-    print(f"\nCandidate: {name}")
-    print()
-
-    for number, result in enumerate(
-        user_results,
-        start=1
-    ):
-
-        parts = result.split(" | ")
-
-        print(f"{number}. {parts[2]}")
-        print(f"   {parts[3]}")
-        print(f"   {parts[4]}")
-        print()
-
-    print("==============================================")
-
-
-def show_performance_summary(name):
-
-    print("\n")
-    print("==============================================")
-    print("          PERFORMANCE SUMMARY")
-    print("==============================================")
-
-    user_results = get_user_results(name)
-
-    if not user_results:
-
-        print("\nNo quiz attempts found.")
-        print("Complete at least one quiz first.")
-        print("==============================================")
-        return
-
-    percentages = []
-
-    for result in user_results:
-
-        parts = result.split(" | ")
-
-        percentage_text = parts[4]
-
-        percentage_text = (
-            percentage_text
-            .replace("Percentage: ", "")
-            .replace("%", "")
-        )
-
-        try:
-
-            percentage = float(percentage_text)
-            percentages.append(percentage)
-
-        except ValueError:
-
-            continue
-
-    if not percentages:
-
-        print("\nUnable to calculate performance.")
-        return
-
-    total_quizzes = len(percentages)
-
-    best_percentage = max(percentages)
-
-    average_percentage = (
-        sum(percentages) / total_quizzes
+    input(
+        "\nPress Enter to return to the main menu..."
     )
-
-    if average_percentage >= 80:
-
-        rating = "Excellent 🏆"
-
-    elif average_percentage >= 60:
-
-        rating = "Good 👍"
-
-    elif average_percentage >= 40:
-
-        rating = "Needs Improvement 📚"
-
-    else:
-
-        rating = "Keep Practicing 💪"
-
-    print()
-    print(f"Candidate       : {name}")
-    print(f"Quizzes Taken   : {total_quizzes}")
-    print(f"Best Percentage : {best_percentage:.2f}%")
-    print(f"Average Score   : {average_percentage:.2f}%")
-    print()
-    print(f"Overall Rating  : {rating}")
-
-    print("==============================================")
 
 
 def main():
 
-    welcome()
+    show_welcome()
 
-    name = input("\nEnter your name: ").strip()
+    name = input(
+        "Enter your name: "
+    ).strip()
 
     if not name:
-
         name = "Candidate"
-
-    print(f"\nWelcome, {name}! 👋")
 
     while True:
 
-        show_menu(name)
+        show_menu()
 
-        choice = input("\nEnter your choice: ")
+        choice = input(
+            "Enter your choice: "
+        ).strip()
 
         if choice == "1":
 
@@ -259,30 +152,26 @@ def main():
 
         elif choice == "4":
 
-            show_progress(name)
-
-            print()
-
-            show_performance_summary(name)
-
-            input(
-                "\nPress Enter to return to "
-                "the main menu..."
-            )
+            view_results()
 
         elif choice == "5":
 
-            print("\n==============================================")
-            print(f"      Thank you, {name}!")
-            print("      Keep learning and keep practicing! 🚀")
-            print("==============================================")
+            print(
+                "\nThank you for using InterviewAce! 🎯"
+            )
+
+            print(
+                "Keep learning and keep practicing! 🚀"
+            )
 
             break
 
         else:
 
-            print("\nInvalid choice.")
-            print("Please select 1, 2, 3, 4, or 5.")
+            print(
+                "\nInvalid choice. "
+                "Please select 1, 2, 3, 4, or 5."
+            )
 
 
 if __name__ == "__main__":
