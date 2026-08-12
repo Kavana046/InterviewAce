@@ -5,7 +5,6 @@ from datetime import datetime
 class Quiz:
 
     def __init__(self, questions, topic, name):
-
         self.questions = questions
         self.topic = topic
         self.name = name
@@ -14,7 +13,6 @@ class Quiz:
     def start_quiz(self):
 
         if not self.questions:
-
             print("\nNo questions available.")
             return
 
@@ -25,32 +23,26 @@ class Quiz:
         self.score = 0
 
         print("\n")
-        print("==============================================")
-        print(f"          {self.topic.upper()} INTERVIEW")
-        print("==============================================")
+        print("==================================================")
+        print(f"              {self.topic.upper()} INTERVIEW")
+        print("==================================================")
 
-        print(f"Candidate: {self.name}")
-        print(f"Total Questions: {len(quiz_questions)}")
+        print(f"Candidate : {self.name}")
+        print(f"Total Questions : {len(quiz_questions)}")
         print()
 
         total_questions = len(quiz_questions)
 
-        for number, question in enumerate(
-            quiz_questions,
-            start=1
-        ):
+        for number, question in enumerate(quiz_questions, start=1):
 
-            print("----------------------------------------------")
-            print(
-                f"Question {number} of {total_questions}"
-            )
-            print("----------------------------------------------")
+            print("--------------------------------------------------")
+            print(f"Question {number} of {total_questions}")
+            print("--------------------------------------------------")
 
             print(question["question"])
             print()
 
             for option in question["options"]:
-
                 print(option)
 
             print()
@@ -70,7 +62,6 @@ class Quiz:
             if answer == question["answer"]:
 
                 print("Correct! ✅")
-
                 self.score += 1
 
             else:
@@ -82,6 +73,8 @@ class Quiz:
                     f"{question['answer']}"
                 )
 
+            print()
+
         self.show_result(total_questions)
 
     def show_result(self, total_questions):
@@ -91,9 +84,9 @@ class Quiz:
         ) * 100
 
         print("\n")
-        print("==============================================")
+        print("==================================================")
         print("                 QUIZ RESULT")
-        print("==============================================")
+        print("==================================================")
 
         print(f"Candidate  : {self.name}")
         print(f"Topic      : {self.topic}")
@@ -101,12 +94,13 @@ class Quiz:
             f"Score      : "
             f"{self.score}/{total_questions}"
         )
+
         print(
             f"Percentage : "
             f"{percentage:.2f}%"
         )
 
-        print("----------------------------------------------")
+        print("--------------------------------------------------")
 
         if percentage >= 80:
 
@@ -118,19 +112,13 @@ class Quiz:
 
         elif percentage >= 40:
 
-            print(
-                "Performance : "
-                "Needs Improvement 📚"
-            )
+            print("Performance : Needs Improvement 📚")
 
         else:
 
-            print(
-                "Performance : "
-                "Keep Practicing! 💪"
-            )
+            print("Performance : Keep Practicing! 💪")
 
-        print("==============================================")
+        print("==================================================")
 
         self.save_result(
             total_questions,
@@ -144,11 +132,7 @@ class Quiz:
             "the main menu..."
         )
 
-    def save_result(
-        self,
-        total_questions,
-        percentage
-    ):
+    def save_result(self, total_questions, percentage):
 
         current_time = datetime.now()
 
@@ -159,13 +143,11 @@ class Quiz:
         result = (
             f"{date_time} | "
             f"Candidate: {self.name} | "
-            f"{self.topic} | "
+            f"Topic: {self.topic} | "
             f"Score: {self.score}/"
             f"{total_questions} | "
-            f"Percentage: "
-            f"{percentage:.2f}%\n"
+            f"Percentage: {percentage:.2f}%\n"
         )
 
         with open("results.txt", "a") as file:
-
             file.write(result)

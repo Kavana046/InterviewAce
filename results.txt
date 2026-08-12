@@ -2,3 +2,4 @@
 2026-08-11 19:35:19 | Candidate: vinay | Python - Easy | Score: 0/5 | Percentage: 0.00%
 2026-08-11 19:37:15 | Candidate: kavana | Python - Medium | Score: 1/5 | Percentage: 20.00%
 2026-08-11 20:29:17 | Candidate: kavana | Git - Hard | Score: 1/5 | Percentage: 20.00%
+2026-08-12 10:44:55 | Candidate: kavana | Topic: Python - Hard | Score: 0/5 | Percentage: 0.00%
