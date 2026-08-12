@@ -35,8 +35,11 @@ class Quiz:
 
         for number, question in enumerate(quiz_questions, start=1):
 
+            progress = (number / total_questions) * 100
+
             print("--------------------------------------------------")
-            print(f"Question {number} of {total_questions}")
+            print(f"QUESTION {number} OF {total_questions}")
+            print(f"Progress: {progress:.0f}%")
             print("--------------------------------------------------")
 
             print(question["question"])
