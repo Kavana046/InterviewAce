@@ -1,7 +1,7 @@
-2026-08-11 19:19:21 | Python - Easy | Score: 2/5 | Percentage: 40.00%
-2026-08-11 19:35:19 | Candidate: vinay | Python - Easy | Score: 0/5 | Percentage: 0.00%
-2026-08-11 19:37:15 | Candidate: kavana | Python - Medium | Score: 1/5 | Percentage: 20.00%
-2026-08-11 20:29:17 | Candidate: kavana | Git - Hard | Score: 1/5 | Percentage: 20.00%
-2026-08-12 10:44:55 | Candidate: kavana | Topic: Python - Hard | Score: 0/5 | Percentage: 0.00%
-2026-08-12 10:59:06 | Candidate: kavana | Topic: Python | Score: 1/5 | Percentage: 20.00%
-2026-08-12 15:51:16 | Candidate: kavana | Topic: Git | Score: 3/5 | Percentage: 60.00%
+Candidate: vinay | Topic: Git - Hard | Score: 2/5 | Percentage: 40.00% | Grade: F | Performance: Poor
+Candidate: vinay | Topic: Git - Hard | Score: 2/5 | Percentage: 40.00% | Grade: F | Performance: Poor
+Candidate: kavo | Topic: Linux - Easy | Score: 0/5 | Percentage: 0.00% | Grade: F | Performance: Poor
+Candidate: kavi | Topic: Python - Easy | Score: 1/5 | Percentage: 20.00% | Grade: F | Performance: Poor
+Candidate: Namsy | Topic: Git - Medium | Score: 3/5 | Percentage: 60.00% | Grade: C | Performance: Average
+Candidate: Namsy | Topic: Git - Medium | Score: 3/5 | Percentage: 60.00% | Grade: C | Performance: Average
+Candidate: kavi | Topic: Python - Easy | Score: 2/5 | Percentage: 40.00% | Grade: F | Performance: Poor
