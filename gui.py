@@ -1077,6 +1077,9 @@ class InterviewAceGUI:
 
     def display_final_result(self):
 
+        # Clear the Question Review screen before showing the result.
+        self.clear_screen()
+
         percentage = self.analysis["percentage"]
 
         grade = self.analysis["grade"]
